@@ -10,5 +10,5 @@
 * Your saves path: list of created saves.
   
 ## Link
-You can download the .exe from Mega using the following link:
-https://mega.nz/file/UoJyHJhA#WMPkfmoePmSX4D-Ntg-boFJtkK5r3d9faPJEx_WZ4rg
+You can download the last version .exe from Mega using the following link:
+https://mega.nz/file/ApAzTAwK#m9c_EfIv3IUXGPBpR5boSsgRoWUz7kGKn9Fxy0DT6Po
