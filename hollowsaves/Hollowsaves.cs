@@ -33,8 +33,11 @@ namespace hollowsaves
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
 			fbd.RootFolder = Environment.SpecialFolder.UserProfile;
 			fbd.Description = "Select Hollow Knight saves folder path";
-			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK) { 
 				originPathTextBox.Text = fbd.SelectedPath;
+				Properties.Settings.Default.originPath = fbd.SelectedPath;
+				Properties.Settings.Default.Save();
+			}
 		}
 
 		private void textBox3_TextChanged(object sender, EventArgs e)
@@ -72,8 +75,11 @@ namespace hollowsaves
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
 			fbd.RootFolder = Environment.SpecialFolder.UserProfile;
 			fbd.Description = "Select the folder where saves will be create";
-			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK) { 
 				destinyPathTextBox.Text = fbd.SelectedPath;
+				Properties.Settings.Default.destinyPath = fbd.SelectedPath;
+				Properties.Settings.Default.Save();
+			}
 		}
 
     
@@ -141,7 +147,6 @@ namespace hollowsaves
 
         private void restoreSaveButtonClick(object sender, EventArgs e)
         {
-
 			if (comboBox2.SelectedItem== null) {
 				MessageBox.Show("Select a save to restore");
 				return;
@@ -181,7 +186,12 @@ namespace hollowsaves
 			fbd.RootFolder = Environment.SpecialFolder.UserProfile;
 			fbd.Description = "Select Hollow Knight save files path";
 			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
 				destinyPathTextBox.Text = fbd.SelectedPath;
+				Properties.Settings.Default.destinyPath = fbd.SelectedPath;
+				Properties.Settings.Default.Save();
+			}
+				
 
 			if (fbd.SelectedPath != "")
             {
@@ -206,7 +216,12 @@ namespace hollowsaves
 			fbd.RootFolder = Environment.SpecialFolder.UserProfile;
 			fbd.Description = "Select the folder where saves will be create";
 			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
 				destinyPathTextBox.Text = fbd.SelectedPath;
+				Properties.Settings.Default.destinyPath = fbd.SelectedPath;
+				Properties.Settings.Default.Save();
+			}
+				
 		}
 
         private void destinyPathTextBox_TextChanged(object sender, EventArgs e)

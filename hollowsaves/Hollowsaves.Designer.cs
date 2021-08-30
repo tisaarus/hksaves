@@ -65,7 +65,14 @@ namespace hollowsaves
             this.originPathTextBox.Name = "originPathTextBox";
             this.originPathTextBox.Size = new System.Drawing.Size(339, 20);
             this.originPathTextBox.TabIndex = 4;
-            this.originPathTextBox.Text = "C:\\Users\\lpm\\AppData\\LocalLow\\Team Cherry\\Hollow Knight";
+
+            if (Properties.Settings.Default.originPath == "")
+            {
+                Properties.Settings.Default.originPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
+                Properties.Settings.Default.Save();
+            }
+            
+            this.originPathTextBox.Text = Properties.Settings.Default.originPath;
             // 
             // destinyPathTextBox
             // 
@@ -73,7 +80,13 @@ namespace hollowsaves
             this.destinyPathTextBox.Name = "destinyPathTextBox";
             this.destinyPathTextBox.Size = new System.Drawing.Size(339, 20);
             this.destinyPathTextBox.TabIndex = 5;
-            this.destinyPathTextBox.Text = "D:\\Users\\lpm\\Documents\\saves";
+
+            if (Properties.Settings.Default.destinyPath == "")
+            {
+                Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.MyDocuments, "\\saves");
+                Properties.Settings.Default.Save();
+            }
+            this.destinyPathTextBox.Text = Properties.Settings.Default.destinyPath;
             this.destinyPathTextBox.TextChanged += new System.EventHandler(this.destinyPathTextBox_TextChanged);
             // 
             // nameTextBox
