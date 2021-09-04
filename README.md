@@ -7,7 +7,7 @@
 * Name (optional): the name of the created save folder. If you leave it empty, folder name will be "save_yyyy-MM-ddThh_mm_ss" (example: "save_2021-08-30T2021T00_31_00").
 
 ### Load saves
-* Your saves path: list of created saves.
+* Your saves path: list of created saves. Saves will be restored to HK AppData path.
   
 ## Link
 You can download the last version .exe from Mega using the following link:
