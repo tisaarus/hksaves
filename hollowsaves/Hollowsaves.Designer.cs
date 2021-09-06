@@ -43,7 +43,6 @@ namespace hollowsaves
             this.generateSaveButton = new System.Windows.Forms.Button();
             this.restoreSaveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.restoreButtonPathButton = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.destinyPathButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,14 +64,7 @@ namespace hollowsaves
             this.originPathTextBox.Name = "originPathTextBox";
             this.originPathTextBox.Size = new System.Drawing.Size(339, 20);
             this.originPathTextBox.TabIndex = 4;
-
-            if (Properties.Settings.Default.originPath == "")
-            {
-                Properties.Settings.Default.originPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
-                Properties.Settings.Default.Save();
-            }
-            
-            this.originPathTextBox.Text = Properties.Settings.Default.originPath;
+            this.originPathTextBox.Text = global::hollowsaves.Properties.Settings.Default.originPath;
             // 
             // destinyPathTextBox
             // 
@@ -80,18 +72,12 @@ namespace hollowsaves
             this.destinyPathTextBox.Name = "destinyPathTextBox";
             this.destinyPathTextBox.Size = new System.Drawing.Size(339, 20);
             this.destinyPathTextBox.TabIndex = 5;
-
-            if (Properties.Settings.Default.destinyPath == "")
-            {
-                Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.MyDocuments, "\\saves");
-                Properties.Settings.Default.Save();
-            }
-            this.destinyPathTextBox.Text = Properties.Settings.Default.destinyPath;
+            this.destinyPathTextBox.Text = global::hollowsaves.Properties.Settings.Default.destinyPath;
             this.destinyPathTextBox.TextChanged += new System.EventHandler(this.destinyPathTextBox_TextChanged);
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(129, 98);
+            this.nameTextBox.Location = new System.Drawing.Point(129, 133);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(339, 20);
             this.nameTextBox.TabIndex = 8;
@@ -120,7 +106,7 @@ namespace hollowsaves
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 101);
+            this.label3.Location = new System.Drawing.Point(12, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 11;
@@ -129,7 +115,7 @@ namespace hollowsaves
             // 
             // generateSaveButton
             // 
-            this.generateSaveButton.Location = new System.Drawing.Point(324, 124);
+            this.generateSaveButton.Location = new System.Drawing.Point(324, 159);
             this.generateSaveButton.Name = "generateSaveButton";
             this.generateSaveButton.Size = new System.Drawing.Size(144, 23);
             this.generateSaveButton.TabIndex = 12;
@@ -139,7 +125,7 @@ namespace hollowsaves
             // 
             // restoreSaveButton
             // 
-            this.restoreSaveButton.Location = new System.Drawing.Point(324, 206);
+            this.restoreSaveButton.Location = new System.Drawing.Point(324, 221);
             this.restoreSaveButton.Name = "restoreSaveButton";
             this.restoreSaveButton.Size = new System.Drawing.Size(144, 23);
             this.restoreSaveButton.TabIndex = 14;
@@ -156,20 +142,10 @@ namespace hollowsaves
             this.label4.TabIndex = 15;
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // restoreButtonPathButton
-            // 
-            this.restoreButtonPathButton.Image = ((System.Drawing.Image)(resources.GetObject("restoreButtonPathButton.Image")));
-            this.restoreButtonPathButton.Location = new System.Drawing.Point(468, 178);
-            this.restoreButtonPathButton.Name = "restoreButtonPathButton";
-            this.restoreButtonPathButton.Size = new System.Drawing.Size(27, 23);
-            this.restoreButtonPathButton.TabIndex = 16;
-            this.restoreButtonPathButton.UseVisualStyleBackColor = true;
-            this.restoreButtonPathButton.Click += new System.EventHandler(this.restoreButtonPathButton_Click);
-            // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(129, 179);
+            this.comboBox2.Location = new System.Drawing.Point(129, 194);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(339, 21);
             this.comboBox2.TabIndex = 18;
@@ -188,21 +164,21 @@ namespace hollowsaves
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 182);
+            this.label6.Location = new System.Drawing.Point(12, 197);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 13);
+            this.label6.Size = new System.Drawing.Size(75, 13);
             this.label6.TabIndex = 21;
-            this.label6.Text = "Your saves path";
+            this.label6.Text = "Your saves list";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // Hollowsaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 253);
+            this.ClientSize = new System.Drawing.Size(511, 268);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.destinyPathButton);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.restoreButtonPathButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.restoreSaveButton);
             this.Controls.Add(this.generateSaveButton);
@@ -234,7 +210,6 @@ namespace hollowsaves
         private System.Windows.Forms.Button generateSaveButton;
         private System.Windows.Forms.Button restoreSaveButton;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button restoreButtonPathButton;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button destinyPathButton;
         private System.Windows.Forms.Label label6;

@@ -16,6 +16,23 @@ namespace hollowsaves
 		public Hollowsaves()
 		{
 			InitializeComponent();
+			if (Properties.Settings.Default.originPath == "")
+			{
+				Properties.Settings.Default.originPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
+				Properties.Settings.Default.Save();
+			}
+
+			if (Properties.Settings.Default.destinyPath == "")
+			{
+				Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.MyDocuments, "\\saves");
+				Properties.Settings.Default.Save();
+			}
+
+			string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
+			foreach (string dir in dirs)
+			{
+				comboBox2.Items.Add(dir);
+			}
 		}
 
 		private void textBox1_TextChanged(object sender, EventArgs e)
@@ -138,6 +155,13 @@ namespace hollowsaves
 			}
 
 			MessageBox.Show("Save \"" + saveName + "\" file generated!");
+
+			string[] dirs = Directory.GetDirectories(destinyPathTextBox.Text);
+			comboBox2.Items.Clear();
+			foreach (string dir in dirs)
+			{
+				comboBox2.Items.Add(dir);
+			}
 		}
 
         private void toRestoreTextBox_TextChanged(object sender, EventArgs e)
@@ -179,8 +203,12 @@ namespace hollowsaves
 
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
 
-        private void restoreButtonPathButton_Click(object sender, EventArgs e)
+        }
+
+        private void destinyPathButton_Click_1(object sender, EventArgs e)
         {
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
 			fbd.RootFolder = Environment.SpecialFolder.UserProfile;
@@ -196,32 +224,12 @@ namespace hollowsaves
 			if (fbd.SelectedPath != "")
             {
 				string[] dirs = Directory.GetDirectories(fbd.SelectedPath);
-
+				comboBox2.Items.Clear();
 				foreach (string dir in dirs)
 				{
 					comboBox2.Items.Add(dir);
 				}
-			}
-
-		}
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void destinyPathButton_Click_1(object sender, EventArgs e)
-        {
-			FolderBrowserDialog fbd = new FolderBrowserDialog();
-			fbd.RootFolder = Environment.SpecialFolder.UserProfile;
-			fbd.Description = "Select the folder where saves will be create";
-			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-				destinyPathTextBox.Text = fbd.SelectedPath;
-				Properties.Settings.Default.destinyPath = fbd.SelectedPath;
-				Properties.Settings.Default.Save();
-			}
-				
+			}	
 		}
 
         private void destinyPathTextBox_TextChanged(object sender, EventArgs e)
@@ -235,6 +243,16 @@ namespace hollowsaves
         }
 
         private void Hollowsaves_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
