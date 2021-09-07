@@ -12,32 +12,26 @@ namespace hollowsaves
 
 			if (String.IsNullOrEmpty(Properties.Settings.Default.originPath))
 			{
-				Properties.Settings.Default.originPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
+				Properties.Settings.Default.originPath = String.Concat("C:\\Users\\<Your username>\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
+				originPathTextBox.Text = Properties.Settings.Default.originPath;
 				Properties.Settings.Default.Save();
 			}
 
 			if (String.IsNullOrEmpty(Properties.Settings.Default.destinyPath))
 			{
-				Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\", Environment.SpecialFolder.MyDocuments, "\\saves");
+				Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\<Your username>\\", Environment.SpecialFolder.MyDocuments, "\\saves");
+				destinyPathTextBox.Text = Properties.Settings.Default.destinyPath;
 				Properties.Settings.Default.Save();
 			}
 
-			if (Directory.Exists(Properties.Settings.Default.destinyPath)) {
+			if (Directory.Exists(Properties.Settings.Default.destinyPath))
+			{
 				string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
 				foreach (string dir in dirs)
 				{
 					comboBox2.Items.Add(dir);
 				}
 			}
-		}
-		private void textBox1_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
-		{
-
 		}
 
 		private void originPath_Click(object sender, EventArgs e)
@@ -50,50 +44,7 @@ namespace hollowsaves
 				Properties.Settings.Default.Save();
 			}
 		}
-
-		private void textBox3_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void button2_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void textBox4_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void button3_Click(object sender, EventArgs e)
-		{
-
-		}
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void destinyPathButton_Click(object sender, EventArgs e)
-        {
-			FolderBrowserDialog fbd = new FolderBrowserDialog();
-			fbd.Description = "Select the folder where saves will be create";
-			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK) { 
-				destinyPathTextBox.Text = fbd.SelectedPath;
-				Properties.Settings.Default.destinyPath = fbd.SelectedPath;
-				Properties.Settings.Default.Save();
-			}
-		}
-
-    
-
+  
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -112,6 +63,24 @@ namespace hollowsaves
 				return;
 			}
 
+			if (String.IsNullOrEmpty(destinyPathTextBox.Text))
+			{
+				MessageBox.Show("Select your saves path");
+				return;
+			}
+
+			if (!Directory.Exists(originPathTextBox.Text))
+			{
+				MessageBox.Show("Selected HK AppData saves path does not exist");
+				return;
+			}
+
+			if (!Directory.Exists(destinyPathTextBox.Text))
+			{
+				MessageBox.Show("Selected saves path does not exist");
+				return;
+			}
+
 			string[] datFiles = Directory.GetFiles(originPathTextBox.Text, "*.dat");
 
 			if(datFiles.Length == 0)
@@ -125,13 +94,6 @@ namespace hollowsaves
 			if (String.IsNullOrEmpty(saveName))
             {
 				saveName = "save_" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH_mm_ss");
-
-			}
-
-			if (String.IsNullOrEmpty(destinyPathTextBox.Text))
-			{
-				MessageBox.Show("Select your saves path");
-				return;
 			}
 
 			string path = String.Concat(destinyPathTextBox.Text, "\\", saveName);
@@ -157,10 +119,6 @@ namespace hollowsaves
 			}
 		}
 
-        private void toRestoreTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void restoreSaveButtonClick(object sender, EventArgs e)
         {
@@ -168,6 +126,12 @@ namespace hollowsaves
 				MessageBox.Show("Select a save to restore");
 				return;
             }
+
+			if (!Directory.Exists(comboBox2.SelectedItem.ToString()))
+			{
+				MessageBox.Show("Selected save does not exist");
+				return;
+			}
 
 			string[] datFiles = Directory.GetFiles(comboBox2.SelectedItem.ToString(), "*.dat");
 
@@ -235,11 +199,6 @@ namespace hollowsaves
         }
 
         private void Hollowsaves_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
         {
 
         }
