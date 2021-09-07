@@ -1,45 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace hollowsaves
 {
-	public partial class Hollowsaves : Form
+    public partial class Hollowsaves : Form
 	{
 		public Hollowsaves()
 		{
 			InitializeComponent();
-			if (Properties.Settings.Default.originPath == "")
+			if (String.IsNullOrEmpty(Properties.Settings.Default.originPath))
 			{
 				Properties.Settings.Default.originPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
 				Properties.Settings.Default.Save();
 			}
 
-			if (Properties.Settings.Default.destinyPath == "")
+			if (String.IsNullOrEmpty(Properties.Settings.Default.destinyPath))
 			{
 				Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.MyDocuments, "\\saves");
 				Properties.Settings.Default.Save();
 			}
-            try
-            {
-				string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
-				foreach (string dir in dirs)
-				{
-					comboBox2.Items.Add(dir);
-				}
+            
+			string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
+			foreach (string dir in dirs)
+			{
+				comboBox2.Items.Add(dir);
 			}
-			catch(Exception e)
-            {
-				Properties.Settings.Default.destinyPath = "";
-				Properties.Settings.Default.Save();
-			}
+			
 		}
 
 		private void textBox1_TextChanged(object sender, EventArgs e)
@@ -118,7 +105,7 @@ namespace hollowsaves
 
         private void generateSaveButton_Click(object sender, EventArgs e)
         {
-			if (originPathTextBox.Text == "")
+			if (String.IsNullOrEmpty(originPathTextBox.Text))
             {
 				MessageBox.Show("Select HK AppData saves path");
 				return;
@@ -134,13 +121,13 @@ namespace hollowsaves
 
 			string saveName = nameTextBox.Text;
 
-			if (saveName.Equals(""))
+			if (String.IsNullOrEmpty(saveName))
             {
 				saveName = "save_" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH_mm_ss");
 
 			}
 
-			if (destinyPathTextBox.Text == "")
+			if (String.IsNullOrEmpty(destinyPathTextBox.Text))
 			{
 				MessageBox.Show("Select your saves path");
 				return;
@@ -225,7 +212,7 @@ namespace hollowsaves
 			}
 				
 
-			if (fbd.SelectedPath != "")
+			if (!String.IsNullOrEmpty(fbd.SelectedPath))
             {
 				string[] dirs = Directory.GetDirectories(fbd.SelectedPath);
 				comboBox2.Items.Clear();
