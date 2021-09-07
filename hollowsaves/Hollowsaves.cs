@@ -9,26 +9,35 @@ namespace hollowsaves
 		public Hollowsaves()
 		{
 			InitializeComponent();
-			if (String.IsNullOrEmpty(Properties.Settings.Default.originPath))
-			{
-				Properties.Settings.Default.originPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
-				Properties.Settings.Default.Save();
-			}
 
-			if (String.IsNullOrEmpty(Properties.Settings.Default.destinyPath))
+			try
 			{
-				Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.MyDocuments, "\\saves");
+
+				if (String.IsNullOrEmpty(Properties.Settings.Default.originPath))
+				{
+					Properties.Settings.Default.originPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.UserProfile, "\\AppData\\LocalLow\\Team Cherry\\Hollow Knight");
+					Properties.Settings.Default.Save();
+				}
+
+				if (String.IsNullOrEmpty(Properties.Settings.Default.destinyPath))
+				{
+					Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.MyDocuments, "\\saves");
+					Properties.Settings.Default.Save();
+				}
+
+				string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
+				foreach (string dir in dirs)
+				{
+					comboBox2.Items.Add(dir);
+				}
+			}
+			catch (Exception e)
+			{
+				Properties.Settings.Default.originPath = "";
+				Properties.Settings.Default.destinyPath = "";
 				Properties.Settings.Default.Save();
 			}
-            
-			string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
-			foreach (string dir in dirs)
-			{
-				comboBox2.Items.Add(dir);
-			}
-			
 		}
-
 		private void textBox1_TextChanged(object sender, EventArgs e)
 		{
 

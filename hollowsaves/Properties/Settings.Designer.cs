@@ -26,24 +26,24 @@ namespace hollowsaves.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string destinyPath {
-            get {
-                return ((string)(this["destinyPath"]));
-            }
-            set {
-                this["destinyPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string originPath {
             get {
                 return ((string)(this["originPath"]));
             }
             set {
                 this["originPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string destinyPath {
+            get {
+                return ((string)(this["destinyPath"]));
+            }
+            set {
+                this["destinyPath"] = value;
             }
         }
     }
