@@ -27,11 +27,18 @@ namespace hollowsaves
 				Properties.Settings.Default.destinyPath = String.Concat("C:\\Users\\", Environment.SpecialFolder.MyDocuments, "\\saves");
 				Properties.Settings.Default.Save();
 			}
-
-			string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
-			foreach (string dir in dirs)
-			{
-				comboBox2.Items.Add(dir);
+            try
+            {
+				string[] dirs = Directory.GetDirectories(Properties.Settings.Default.destinyPath);
+				foreach (string dir in dirs)
+				{
+					comboBox2.Items.Add(dir);
+				}
+			}
+			catch(Exception e)
+            {
+				Properties.Settings.Default.destinyPath = "";
+				Properties.Settings.Default.Save();
 			}
 		}
 
