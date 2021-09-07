@@ -13,4 +13,4 @@
   
 ## Link
 You can download the last .exe version from Mega using the following link:
-https://mega.nz/file/V841DAqD#Ka_hWe7IctaO6Ew9z1kfjVSPdI8QyDz3cc6Y6Aznras
+https://mega.nz/file/M9xG2T5a#OroEHkA4cufsfsgp-4vKJsxOsFoqmpm4JaQdhHQaZSk
